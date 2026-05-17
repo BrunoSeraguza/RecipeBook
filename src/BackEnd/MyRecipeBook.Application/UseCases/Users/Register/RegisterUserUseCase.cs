@@ -1,4 +1,5 @@
 ﻿using Mapster;
+using MyRecipeBook.Application.Services.EncryptPassword;
 using MyRecipeBook.Communication.Request;
 using MyRecipeBook.Communication.Response;
 using MyRecipeBook.Domain.Entities;
@@ -10,17 +11,18 @@ namespace MyRecipeBook.Application.UseCases.Users.Register
     {
         public ResponseRegisteredUserJson Execute(RequestRegisteredUserJson request)
         {
-            Validate(request);
-            //TODO Validar dados
-            var user = new Domain.Entities.User
-            {
-               Name = request.Name,
-            };
-            //customizar o password na classe dependencyInjection dps
             var userMapper = request.Adapt<Domain.Entities.User>();
+            var passwordEncrypt = new EncryptPassword();
+            Validate(request);
 
-            //mapear requiest para uma entidade
-            //criptografar senha
+            //customizar o password na classe dependencyInjection dps
+            //var user = new Domain.Entities.User
+            //{
+            //    Name = request.Name,
+            //};
+          
+            userMapper.Password = passwordEncrypt.Encrypt(request.Password);
+
             //persistir no banco
 
             return new ResponseRegisteredUserJson
