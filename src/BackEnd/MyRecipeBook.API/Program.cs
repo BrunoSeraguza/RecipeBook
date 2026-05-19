@@ -1,5 +1,7 @@
 using MyRecipeBook.API.Filters;
 using MyRecipeBook.API.Middlewares;
+using MyRecipeBook.Application;
+using MyRecipeBook.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,10 +12,12 @@ builder.Services.AddControllers();
 builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure(builder.Configuration.GetConnectionString("DefaultConnection")!);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline.u
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
