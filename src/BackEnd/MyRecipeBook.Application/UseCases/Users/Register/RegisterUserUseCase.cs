@@ -8,14 +8,22 @@ using MyRecipeBook.Exceptions.ExceptionsBase;
 
 namespace MyRecipeBook.Application.UseCases.Users.Register
 {
-    public class RegisterUserUseCase
+    public class RegisterUserUseCase : IRegisterUserUseCase
     {
         private readonly IUserReadOnlyRepository _readOnlyUserRepository;
         private readonly IUserWriteOnlyRepository _writeOnlyUserRepository;
-        public ResponseRegisteredUserJson Execute(RequestRegisteredUserJson request)
+        private readonly EncryptPassword _encryptPassword;
+
+        public RegisterUserUseCase(IUserReadOnlyRepository readOnlyUserRepository, IUserWriteOnlyRepository writeOnlyUserRepository, EncryptPassword encryptPassword)
+        {
+            _readOnlyUserRepository = readOnlyUserRepository;
+            _encryptPassword = encryptPassword;
+            _writeOnlyUserRepository = writeOnlyUserRepository;           
+        }
+
+        public  async Task<ResponseRegisteredUserJson> Execute(RequestRegisteredUserJson request)
         {
             User userMapper = request.Adapt<Domain.Entities.User>();
-            EncryptPassword passwordEncrypt = new EncryptPassword();
             Validate(request);
 
             //customizar o password na classe dependencyInjection dps
@@ -24,9 +32,9 @@ namespace MyRecipeBook.Application.UseCases.Users.Register
             //    Name = request.Name,
             //};
           
-            userMapper.Password = passwordEncrypt.Encrypt(request.Password);
+            userMapper.Password = _encryptPassword.Encrypt(request.Password);
 
-            _writeOnlyUserRepository.Add(userMapper);
+            await _writeOnlyUserRepository.Add(userMapper);
             //persistir no banco
 
             return new ResponseRegisteredUserJson

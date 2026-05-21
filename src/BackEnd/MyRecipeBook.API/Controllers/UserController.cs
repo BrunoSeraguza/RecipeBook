@@ -12,11 +12,13 @@ public class UserController : ControllerBase
 {
     [HttpPost]
     [ProducesResponseType(typeof(ResponseRegisteredUserJson),StatusCodes.Status201Created)]
-    public IActionResult Register(RequestRegisteredUserJson request)
+    public async Task< IActionResult> Register(
+        [FromBody]RequestRegisteredUserJson request, 
+        [FromServices]IRegisterUserUseCase useCases)
     {
-            RegisterUserUseCase useCase = new();
+            //RegisterUserUseCase useCase = new();
             //manda para application validar a regra de negocio
-            var response = useCase.Execute(request);
+            var response = await useCases.Execute(request);
 
             return Created(string.Empty,response);              
     }
