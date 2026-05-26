@@ -61,6 +61,15 @@ namespace MyRecipeBook.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Email already exist!.
+        /// </summary>
+        public static string EMAIL_EXISTE {
+            get {
+                return ResourceManager.GetString("EMAIL_EXISTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Email must be a valid!.
         /// </summary>
         public static string EMAIL_VALIDO {
