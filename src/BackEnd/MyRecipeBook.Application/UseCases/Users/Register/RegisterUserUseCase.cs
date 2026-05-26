@@ -3,7 +3,9 @@ using MyRecipeBook.Application.Services.EncryptPassword;
 using MyRecipeBook.Communication.Request;
 using MyRecipeBook.Communication.Response;
 using MyRecipeBook.Domain.Entities;
+using MyRecipeBook.Domain.Repositories;
 using MyRecipeBook.Domain.Repositories.Users;
+using MyRecipeBook.Exceptions;
 using MyRecipeBook.Exceptions.ExceptionsBase;
 
 namespace MyRecipeBook.Application.UseCases.Users.Register
@@ -13,20 +15,23 @@ namespace MyRecipeBook.Application.UseCases.Users.Register
         private readonly IUserReadOnlyRepository _readOnlyUserRepository;
         private readonly IUserWriteOnlyRepository _writeOnlyUserRepository;
         private readonly EncryptPassword _encryptPassword;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public RegisterUserUseCase(IUserReadOnlyRepository readOnlyUserRepository, IUserWriteOnlyRepository writeOnlyUserRepository, EncryptPassword encryptPassword)
+        public RegisterUserUseCase(IUserReadOnlyRepository readOnlyUserRepository, IUserWriteOnlyRepository writeOnlyUserRepository, EncryptPassword encryptPassword, IUnitOfWork unitOfWork)
         {
             _readOnlyUserRepository = readOnlyUserRepository;
             _encryptPassword = encryptPassword;
-            _writeOnlyUserRepository = writeOnlyUserRepository;           
+            _writeOnlyUserRepository = writeOnlyUserRepository;  
+            _unitOfWork = unitOfWork;
+            
         }
 
-        public  async Task<ResponseRegisteredUserJson> Execute(RequestRegisteredUserJson request)
+        public async Task<ResponseRegisteredUserJson> Execute(RequestRegisteredUserJson request)
         {
             User userMapper = request.Adapt<Domain.Entities.User>();
-            Validate(request);
+            await  Validate(request);
 
-            //customizar o password na classe dependencyInjection dps
+            //todo customizar o password na classe dependencyInjection dps
             //var user = new Domain.Entities.User
             //{
             //    Name = request.Name,
@@ -35,20 +40,26 @@ namespace MyRecipeBook.Application.UseCases.Users.Register
             userMapper.Password = _encryptPassword.Encrypt(request.Password);
 
             await _writeOnlyUserRepository.Add(userMapper);
+            await _unitOfWork.Commit();
             //persistir no banco
 
             return new ResponseRegisteredUserJson
             {
-                Name = request.Name,
+                Name = request.Nome,
             };
         }
 
-        private void Validate(RequestRegisteredUserJson request)
+        private async Task Validate(RequestRegisteredUserJson request)
         {
             var validade = new ValidateRegisterUser();
             var response = validade.Validate(request);
 
-            if(!response.IsValid)
+            var emailIsNotValid =  await _readOnlyUserRepository.ExistActiveUserEmail(request.Email);
+
+            if (emailIsNotValid)
+                response.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceExceptionsMessage.EMAIL_EXISTE));
+
+            if (!response.IsValid)
             {
                 var errorMessage = response.Errors.Select(e => e.ErrorMessage).ToList();
                 var errorCode = response.Errors.Select(v => v.ErrorCode);

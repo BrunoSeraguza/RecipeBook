@@ -5,10 +5,16 @@ namespace MyRecipeBook.Application.Services.EncryptPassword;
 
 public class EncryptPassword
 {
+    private readonly string _additionalKey;
+
+    public EncryptPassword(string additionalKey)
+    {
+        _additionalKey = additionalKey;
+    }
+
     public string Encrypt(string password)
     {
-        string code = "shz";
-        var newPassword = $"{password}{code}";
+        var newPassword = $"{password}{_additionalKey}";
 
         var bytes = Encoding.UTF8.GetBytes(newPassword);
 
