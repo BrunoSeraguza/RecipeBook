@@ -1,7 +1,11 @@
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect.Configuration;
 using MyRecipeBook.API.Filters;
 using MyRecipeBook.API.Middlewares;
 using MyRecipeBook.Application;
 using MyRecipeBook.Infrastructure;
+using MyRecipeBook.Infrastructure.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,4 +37,10 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+MigrateDataBase();
+
 app.Run();
+
+void MigrateDataBase() => DataBaseMigration.Migrate(builder.Configuration.GetConnectionString("DefaultConnection")!);
+
+
