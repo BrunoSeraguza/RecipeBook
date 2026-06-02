@@ -1,6 +1,3 @@
-using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect.Configuration;
 using MyRecipeBook.API.Filters;
 using MyRecipeBook.API.Middlewares;
 using MyRecipeBook.Application;

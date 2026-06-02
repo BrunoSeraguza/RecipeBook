@@ -17,7 +17,7 @@ namespace MyRecipeBook.API.Filters
                 UnknownProjectException(context);           
         }
 
-        private void HandleProjectException(ExceptionContext context)
+        private static void HandleProjectException(ExceptionContext context)
         {
             if(context.Exception is ErrorOnValidateException)
             {
@@ -29,7 +29,7 @@ namespace MyRecipeBook.API.Filters
 
         }
 
-        private void UnknownProjectException(ExceptionContext context)
+        private static void UnknownProjectException(ExceptionContext context)
         {
             context.HttpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
             context.Result = new BadRequestObjectResult(new ResponseErrorsJson(ResourceExceptionsMessage.ERRO_DESCONHECIDO));
