@@ -28,6 +28,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRecipeBook.Communication"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRecipeBook.Exceptions", "src\Shared\MyRecipeBook.Exceptions\MyRecipeBook.Exceptions.csproj", "{C82F96F5-2CEA-4411-AF83-F3DD2EE7CA7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validators.Test", "tests\Validators.Test\Validators.Test.csproj", "{848475ED-3671-4F7B-86AC-18080E32D5C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommomTestsUtilities", "tests\CommomTestsUtilities\CommomTestsUtilities.csproj", "{67E09CD6-221F-4379-8E1E-7676E327587D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +62,14 @@ Global
 		{C82F96F5-2CEA-4411-AF83-F3DD2EE7CA7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C82F96F5-2CEA-4411-AF83-F3DD2EE7CA7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C82F96F5-2CEA-4411-AF83-F3DD2EE7CA7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{848475ED-3671-4F7B-86AC-18080E32D5C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{848475ED-3671-4F7B-86AC-18080E32D5C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{848475ED-3671-4F7B-86AC-18080E32D5C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{848475ED-3671-4F7B-86AC-18080E32D5C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67E09CD6-221F-4379-8E1E-7676E327587D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67E09CD6-221F-4379-8E1E-7676E327587D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67E09CD6-221F-4379-8E1E-7676E327587D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67E09CD6-221F-4379-8E1E-7676E327587D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,5 +83,7 @@ Global
 		{FE5C7972-EADA-4C65-B1FB-B093AAEFBC4C} = {B8922DB9-7BBB-487C-BB0D-CDEDD967803E}
 		{A4985D71-29AB-4FCF-A89A-EEB6F4958E0D} = {59FEF7A4-325E-47A4-A2A9-2C381608BF0C}
 		{C82F96F5-2CEA-4411-AF83-F3DD2EE7CA7E} = {59FEF7A4-325E-47A4-A2A9-2C381608BF0C}
+		{848475ED-3671-4F7B-86AC-18080E32D5C1} = {313A6029-05DC-4A22-87FD-ACA4D4F04AE9}
+		{67E09CD6-221F-4379-8E1E-7676E327587D} = {313A6029-05DC-4A22-87FD-ACA4D4F04AE9}
 	EndGlobalSection
 EndGlobal
