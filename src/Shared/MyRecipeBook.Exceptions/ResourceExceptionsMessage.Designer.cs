@@ -104,5 +104,14 @@ namespace MyRecipeBook.Exceptions {
                 return ResourceManager.GetString("NOME_VAZIO", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Password is invalid!.
+        /// </summary>
+        public static string PASSWORD_INVALIDO {
+            get {
+                return ResourceManager.GetString("PASSWORD_INVALIDO", resourceCulture);
+            }
+        }
     }
 }

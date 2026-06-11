@@ -132,4 +132,7 @@
   <data name="NOME_VAZIO" xml:space="preserve">
     <value>Name must be empty!</value>
   </data>
+  <data name="PASSWORD_INVALIDO" xml:space="preserve">
+    <value>Password is invalid!</value>
+  </data>
 </root>
