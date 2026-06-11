@@ -7,6 +7,9 @@ namespace Validators.Test.Users.Register;
 
 public class ValidateRegisterUserTests
 {
+
+    // Fact -> testes simples
+    // Theory -> quando quisermos loop
     [Fact]
     public  void Success()
     {
@@ -60,11 +63,22 @@ public class ValidateRegisterUserTests
 
     }
 
-    [Fact]
-    public void Error_Email_Not_Valid()
+    [Theory]
+    [InlineData(1)]
+    [InlineData(2)]
+    [InlineData(3)]
+    [InlineData(4)]
+    [InlineData(5)]
+    public void Error_Password_Invalid(int passwordLenght)
     {
         var validade = new ValidateRegisterUser();
-        var request = new RequestRegisteredUserJsonBuild().Build();
+        var request = new RequestRegisteredUserJsonBuild().Build(passwordLenght);
+
+        var result = validade.Validate(request);
+
+        Assert.False(result.IsValid);
+        Assert.Single(result.Errors);
+        Assert.Contains(result.Errors, e => e.ErrorMessage == ResourceExceptionsMessage.PASSWORD_INVALIDO);
        
     }
 

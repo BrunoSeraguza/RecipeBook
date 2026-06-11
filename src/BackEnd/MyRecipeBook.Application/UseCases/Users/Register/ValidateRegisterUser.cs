@@ -10,7 +10,7 @@ public class ValidateRegisterUser : AbstractValidator<RequestRegisteredUserJson>
     {
         RuleFor(u => u.Nome).NotEmpty().WithMessage(ResourceExceptionsMessage.NOME_VAZIO);
         RuleFor(u => u.Email).NotEmpty().WithMessage(ResourceExceptionsMessage.EMAIL_VAZIO);
-        RuleFor(u => u.Password.Length).GreaterThanOrEqualTo(6);
+        RuleFor(u => u.Password.Length).GreaterThanOrEqualTo(6).WithMessage(ResourceExceptionsMessage.PASSWORD_INVALIDO);
         When(e => !string.IsNullOrEmpty(e.Email), () =>
         {
             RuleFor(u => u.Email).EmailAddress().WithMessage(ResourceExceptionsMessage.EMAIL_VALIDO);
