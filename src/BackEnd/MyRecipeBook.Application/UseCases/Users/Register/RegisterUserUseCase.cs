@@ -28,24 +28,23 @@ namespace MyRecipeBook.Application.UseCases.Users.Register
 
         public async Task<ResponseRegisteredUserJson> Execute(RequestRegisteredUserJson request)
         {
-            User userMapper = request.Adapt<Domain.Entities.User>();
-            await  Validate(request);
-
-            //todo customizar o password na classe dependencyInjection dps
             //var user = new Domain.Entities.User
             //{
             //    Name = request.Name,
             //};
-          
+
+            User userMapper = request.Adapt<Domain.Entities.User>();
+            await  Validate(request);
+
             userMapper.Password = _encryptPassword.Encrypt(request.Password);
 
             await _writeOnlyUserRepository.Add(userMapper);
-            await _unitOfWork.Commit();
             //persistir no banco
+            await _unitOfWork.Commit();
 
             return new ResponseRegisteredUserJson
             {
-                Name = request.Nome,
+                Name = userMapper.Nome,
             };
         }
 

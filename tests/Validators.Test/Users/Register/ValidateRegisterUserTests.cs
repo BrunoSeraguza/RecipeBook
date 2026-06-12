@@ -33,7 +33,6 @@ public class ValidateRegisterUserTests
 
         var result = validade.Validate(request);
 
-
         Assert.False(result.IsValid);
         //result.IsValid.ShouldBeFalse();
         //result.Errors.ShouldHaveSingleItem();
@@ -60,7 +59,6 @@ public class ValidateRegisterUserTests
         // result.Errors.ShouldContain(e => e.ErrorMessage == ResourceExceptionsMessage.NOME_VAZIO);
         Assert.Single(result.Errors);
         Assert.Contains(result.Errors, e => e.ErrorMessage == ResourceExceptionsMessage.EMAIL_VAZIO);
-
     }
 
     [Theory]
@@ -78,8 +76,7 @@ public class ValidateRegisterUserTests
 
         Assert.False(result.IsValid);
         Assert.Single(result.Errors);
-        Assert.Contains(result.Errors, e => e.ErrorMessage == ResourceExceptionsMessage.PASSWORD_INVALIDO);
-       
+        Assert.Contains(result.Errors, e => e.ErrorMessage == ResourceExceptionsMessage.PASSWORD_INVALIDO);      
     }
 
 }
