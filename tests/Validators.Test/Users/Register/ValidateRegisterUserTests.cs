@@ -14,9 +14,9 @@ public class ValidateRegisterUserTests
     public  void Success()
     {
         var validade = new ValidateRegisterUser();
-        var request = new RequestRegisteredUserJsonBuild();
+        var request =  RequestRegisteredUserJsonBuild.Build();
 
-        var result = validade.Validate(request.Build());
+        var result = validade.Validate(request);
 
 
         result.IsValid.ShouldBeTrue();
@@ -28,7 +28,7 @@ public class ValidateRegisterUserTests
     public void Error_Empty_Name()
     {
         var validade = new ValidateRegisterUser();
-        var request = new RequestRegisteredUserJsonBuild().Build();
+        var request =  RequestRegisteredUserJsonBuild.Build();
         request.Nome = string.Empty;
 
         var result = validade.Validate(request);
@@ -47,7 +47,7 @@ public class ValidateRegisterUserTests
     public void Error_Empty_Email()
     {
         var validade = new ValidateRegisterUser();
-        var request = new RequestRegisteredUserJsonBuild().Build();
+        var request =  RequestRegisteredUserJsonBuild.Build();
         request.Email = string.Empty;
 
         var result = validade.Validate(request);
@@ -70,7 +70,7 @@ public class ValidateRegisterUserTests
     public void Error_Password_Invalid(int passwordLenght)
     {
         var validade = new ValidateRegisterUser();
-        var request = new RequestRegisteredUserJsonBuild().Build(passwordLenght);
+        var request =  RequestRegisteredUserJsonBuild.Build(passwordLenght);
 
         var result = validade.Validate(request);
 

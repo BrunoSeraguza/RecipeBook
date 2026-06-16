@@ -6,7 +6,7 @@ namespace CommomTestsUtilities.Requests;
 public class RequestRegisteredUserJsonBuild
 {
 
-    public RequestRegisteredUserJson Build(int passwordLenght = 10)
+    public static RequestRegisteredUserJson Build(int passwordLenght = 10)
     {
         return new Faker<RequestRegisteredUserJson>()
             .RuleFor(user => user.Nome,     (f)    => f.Person.FirstName)
