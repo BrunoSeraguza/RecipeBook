@@ -42,7 +42,6 @@ public class ValidateRegisterUserTests
               
     }
 
-
     [Fact]
     public void Error_Empty_Email()
     {
