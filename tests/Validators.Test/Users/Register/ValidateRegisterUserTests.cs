@@ -33,11 +33,11 @@ public class ValidateRegisterUserTests
 
         var result = validade.Validate(request);
 
-        Assert.False(result.IsValid);
         //result.IsValid.ShouldBeFalse();
+        Assert.False(result.IsValid);
         //result.Errors.ShouldHaveSingleItem();
-       // result.Errors.ShouldContain(e => e.ErrorMessage == ResourceExceptionsMessage.NOME_VAZIO);
         Assert.Single(result.Errors);
+       // result.Errors.ShouldContain(e => e.ErrorMessage == ResourceExceptionsMessage.NOME_VAZIO);
         Assert.Contains(result.Errors, e => e.ErrorMessage == ResourceExceptionsMessage.NOME_VAZIO);
               
     }

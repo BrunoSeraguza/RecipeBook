@@ -45,5 +45,6 @@ void MigrateDataBase()
     DataBaseMigration.Migrate(builder.Configuration.GetConnectionString("DefaultConnection")!, serviceScope.ServiceProvider);
 }
 
+public partial class Program { }
 
 
