@@ -14,9 +14,13 @@ public static class DependencyInjectionExtensions
 {
     public static void AddInfrastructure(this IServiceCollection service, IConfiguration configuration)
     {
+        AddRepositories(service);
+
+        if (configuration.IsUnitTestEnviroment())
+            return;
+
         AddDbContext(service, configuration);
         FluentMigratorSqlServer(service, configuration);
-        AddRepositories(service);
     }
 
     private static void AddDbContext(IServiceCollection service, IConfiguration configuration)
