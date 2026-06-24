@@ -64,7 +64,6 @@ namespace MyRecipeBook.Application.UseCases.Users.Register
                 var errorCode = response.Errors.Select(v => v.ErrorCode);
 
                 throw new ErrorOnValidateException(errorMessage);
-                //throw new Exception(errorMessage.FirstOrDefault().ToString());
             }
 
         }
