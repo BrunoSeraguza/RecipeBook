@@ -124,15 +124,15 @@
     <value>Email must be a valid!</value>
   </data>
   <data name="EMAIL_VAZIO" xml:space="preserve">
-    <value>Email is not empty!</value>
+    <value>Email must not be empty!</value>
   </data>
   <data name="ERRO_DESCONHECIDO" xml:space="preserve">
     <value>Unknown Error</value>
   </data>
   <data name="NOME_VAZIO" xml:space="preserve">
-    <value>Name must be empty!</value>
+    <value>Name must not be empty!</value>
   </data>
   <data name="PASSWORD_INVALIDO" xml:space="preserve">
-    <value>Password is invalid!</value>
+    <value>The password must be at least 6 characters long!</value>
   </data>
 </root>
