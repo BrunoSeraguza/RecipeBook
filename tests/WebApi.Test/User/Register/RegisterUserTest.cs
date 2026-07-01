@@ -1,10 +1,8 @@
 ﻿using System.Globalization;
 using System.Net;
-using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using CommomTestsUtilities.Requests;
-using Microsoft.AspNetCore.Mvc.Testing;
 using MyRecipeBook.Exceptions;
 using WebApi.Test.InlineData;
 

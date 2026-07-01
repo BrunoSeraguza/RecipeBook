@@ -79,7 +79,7 @@ namespace MyRecipeBook.Exceptions {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Email is not empty!.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Email must not be empty!.
         /// </summary>
         public static string EMAIL_VAZIO {
             get {
@@ -97,7 +97,7 @@ namespace MyRecipeBook.Exceptions {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Name must be empty!.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Name must not be empty!.
         /// </summary>
         public static string NOME_VAZIO {
             get {
@@ -106,7 +106,7 @@ namespace MyRecipeBook.Exceptions {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Password is invalid!.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The password must be at least 6 characters long!.
         /// </summary>
         public static string PASSWORD_INVALIDO {
             get {

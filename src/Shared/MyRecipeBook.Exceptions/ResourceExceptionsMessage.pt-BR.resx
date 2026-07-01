@@ -127,7 +127,7 @@
     <value>Email não deve ser vazio!</value>
   </data>
   <data name="ERRO_DESCONHECIDO" xml:space="preserve">
-    <value>Erro Desconhecido!</value>
+    <value>Erro Desconhecido</value>
   </data>
   <data name="NOME_VAZIO" xml:space="preserve">
     <value>Nome não deve ser vazio!</value>
